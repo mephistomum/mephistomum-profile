@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MephistoMum</title>
+  <link rel="icon" type="image/png" href="assets/image/favicon.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/output.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allan:wght@400;700&family=Ballet:opsz@16..72&family=Boogaloo&family=Quintessential&family=Rubik+80s+Fade&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<style>
+@media (min-width: 1025px) and (max-width: 1504px) {
+  #home {
+    
+    margin-left: 7%;
+  }
+
+  #home section {
+    flex: 0 0 50%;  /* text takes 45% of space */
+    max-width: none;
+  }
+
+  #home img {
+    flex: 0 0 50%;  /* image takes the rest */
+    position: absolute; /* remove absolute so it respects flex */
+    bottom: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 7%;
+  }
+}
+
+  /* Smooth fade transition */
+  #switchingImage {
+    transition: opacity 2s ease-in-out;
+  }
+  #switchingImage.fade-out {
+    opacity: 0;
+  }
+
+  </style>
+</head>
+<body>
+
+<!-- Header-->
+<header class="fixed w-full top-0 z-30 backdrop-blur-sm border-b border-gray-800">
+  <nav class="text-white px-6 py-3 flex items-center justify-between relative">
+    <!-- Left: Logo -->
+    <div class="text-xl font-bold">
+      MephistoMum
+    </div>
+
+    <!-- Center: Menu Links (Desktop only) -->
+    <div class="hidden md:flex space-x-6 relative items-center">
+      <a href="#home" class="hover:text-nav">Home</a>
+      <a href="#about" class="hover:text-nav">About</a>
+      
+
+      <!-- Projects dropdown (desktop) -->
+      <div class="relative group">
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 hover:text-nav focus:outline-none"
+          aria-haspopup="true">
+          <span>Projects</span>
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 8l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <!-- Dropdown menu (desktop) - vertical list -->
+      <div
+  class="dropdown-menu absolute left-0 top-full w-56 bg-brown text-beige rounded-lg shadow-lg 
+         transform transition-all duration-150 opacity-0 scale-95 pointer-events-none 
+         group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto 
+         hover:opacity-100 hover:scale-100 hover:pointer-events-auto z-50 flex flex-col">
+
+          <a href="#final-year-project"
+             class="block w-full text-left px-4 py-2 text-sm hover:bg-[#bb987c] hover:text-black">
+            QR Templates
+          </a>
+          <a href="#izzy-pin"
+             class="block w-full text-left px-4 py-2 text-sm hover:bg-[#bb987c] hover:text-black">
+            Izzy's Pin
+          </a>
+        </div>
+      </div>
+      <a href="https://ko-fi.com/mephistomum" class="hover:text-nav">Buy Me Coffee</a>
+    </div>
+
+    <!-- Center (Mobile): Hamburger -->
+    <button id="mobile-menu-button"
+            class="md:hidden p-2 absolute left-1/2 transform -translate-x-1/2 focus:outline-none"
+            aria-expanded="false"
+            aria-controls="mobile-menu">
+      <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
+    <!-- Right: Social Icons (Always visible) -->
+    <div class="flex space-x-4">
+      <a href="https://x.com/mephistomum" target="_blank" class="hover:text-nav" aria-label="Instagram">
+        <img src="assets/icon/X.png" alt="X" class="h-7 w-7 hover:opacity-80">
+      </a>
+
+      <a href="https://www.tiktok.com/@mephistomum?_t=ZS-8y16ezVy7xn&_r=1" target="_blank" aria-label="LinkedIn">
+        <img src="assets/icon/tiktok.png" alt="Tiktok" class="h-7 w-7 hover:opacity-80">
+      </a>
+
+      <a href="https://www.xiaohongshu.com/user/profile/6846c056000000001d01692b?xsec_token=YBg7WGpJ7udGqqOVYseXoNJawQKrxdMHXSESoFKQ2sw9M=&xsec_source=app_share&xhsshare=CopyLink&appuid=6846c056000000001d01692b&apptime=1752484209&share_id=428020edc61141b7b6f2f5b4ab641665" target="_blank" aria-label="GitHub">
+        <img src="assets/icon/xhs.png" alt="GitHub" class="h-7 w-7 hover:opacity-80">
+      </a>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu (Hidden by default). Only navigation links (no socials). -->
+  <div id="mobile-menu" class="hidden md:hidden w-full bg-brown text-beige">
+    <div class="px-4 pt-3 pb-4 flex flex-col space-y-1">
+      <a href="#home" class="block w-full text-left px-3 py-2 hover:bg-[#7a5c3f] rounded">Home</a>
+      <a href="#about" class="block w-full text-left px-3 py-2 hover:bg-[#7a5c3f] rounded">About</a>
+
+      <!-- Projects collapsible (mobile) -->
+      <div class="mt-1">
+        <button id="mobile-projects-button" class="w-full flex items-center justify-between px-3 py-2 hover:bg-[#7a5c3f] rounded focus:outline-none">
+          <span class="text-left">Projects</span>
+          <svg id="mobile-projects-icon" class="w-4 h-4 transform transition-transform duration-200" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 8l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Projects list (stacked vertically) -->
+        <div id="mobile-projects-menu" class="hidden flex-col mt-2 ml-3 space-y-1">
+          <a href="#final-year-project" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Final Year Project</a>
+          <a href="#izzy-pin" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Laravel Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Section -->
+   <!-- Home Section -->
+<main id="home" 
+  class="relative min-h-screen flex flex-col lg:flex-row 
+         items-center lg:items-center justify-center lg:justify-start 
+         px-6 pt-28 pb-16 w-full"
+  style="background-color: black;">
+
+  <!-- Left: Intro -->
+  <section id="home"
+    class="relative z-10 max-w-xl text-center lg:text-left 
+           mx-auto px-4 lg:px-0 
+           flex flex-col justify-center h-full 
+           pb-6 lg:pb-0">
+  
+    <h1 class=" boogaloo-regular text-white text-4xl md:text-5xl leading-tight mb-6 ">
+      Welcome to Izzy's page !
+    </h1>
+    
+    <p>
+      <span class="inline-block border border-gray-600 rounded-full px-6 py-2 text-lg mb-8">
+        Izzy / Aries / INFP
+      </span>
+    </p>
+    
+    <p class="uppercase text-xs tracking-widest text-gray-300 max-w-md mx-auto lg:mx-0 leading-relaxed">
+      Hi, I’m Izzy - 23 years old love and deepspace hunter and a programmer irl. 
+      This site keeps all my highlight X contents including QRs, edits and moots projects.  
+      Please go to "about me" section before interacting.
+    </p>
+  </section>
+
+  <!-- ✨ IMAGE SWITCHER (Visible on mobile + iPad) -->
+  <div class="relative mx-auto block lg:hidden mt-8">
+  <img id="switchingImage"
+       src="assets/image/izzy.png"
+       alt="Izzy Image Switch"
+       class="h-[45vh] sm:h-[55vh] object-contain drop-shadow-2xl opacity-100" />
+</div>
+
+  <!-- ✨ DESKTOP IMAGES (only on large screens) -->
+  <img src="assets/image/left-izzy.png" 
+     alt="Left Decoration" 
+     class="hidden lg:block lg:absolute lg:bottom-0 lg:left-0 lg:-translate-x-20 lg:h-screen 
+            object-contain drop-shadow-2xl transition-all duration-700 ease-in-out opacity-0 animate-fadeIn" />
+
+
+  <img src="assets/image/izzy.png" 
+       alt="Portrait of Nurul Izzah" 
+       class="hidden lg:block lg:absolute lg:bottom-0 lg:right-0 lg:h-screen object-contain drop-shadow-2xl transition-all duration-700 ease-in-out opacity-0 animate-fadeIn" />
+
+</main>
+
+
+<!-- About Section -->
+<section id="about" class="min-h-screen flex items-center justify-center bg-beige px-6 py-20">
+  <div class="max-w-3xl w-full text-center">
+    <!-- Section Title -->
+    <h2 class="text-3xl md:text-4xl font-bold text-brown mb-8">About Me</h2>
+    
+    <!-- Intro -->
+    <p class="text-gray-800 leading-relaxed mb-12">
+      Hi again! i’m <span class="font-semibold text-brown">IZZY</span> ♡ <br>
+      Im here to have fun, interacting with fun people, making and joining projects, 
+      sharing qr templates, trying out makeups and etc. Im a proud sylus main and will always be but i also love and enjoy all LIs contents. 
+      I don't engage w dramas or simply i just dgaf bcs that's a waste of my precious time. <br>
+      I love everything that is pretty, cute and attractive ✨
+    </p>
+
+    <!-- Likes / Dislikes -->
+    <div class="grid md:grid-cols-2 gap-8 mb-12 text-left">
+     <!-- Likes -->
+<div class="relative bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">
+  <!-- ✨ Sticker -->
+<img src="assets/image/kittygood.png" 
+     alt="sticker"
+     class="absolute top-0 right-0 w-28 sm:w-28 md:w-28 -translate-y-4 translate-x-4 rotate-6" />
+
+
+  <h3 class="text-lg font-semibold text-brown mb-3">♡ Me</h3>
+  <ul class="text-gray-700 space-y-2 list-disc list-inside">
+    <li>Love Sylus (and Zayne)</li>
+    <li>K-popers (Hybe stan)</li>
+    <li>Love Matcha + Tiramisu</li>
+    <li>Love Project invitation</li>
+    <li>Flirty and H0rny af</li>
+    <li>Hold grudge</li>
+  </ul>
+</div>
+
+
+  <!-- Dislikes -->
+<div class="relative bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition">
+  <!-- ✨ Sticker -->
+  <img src="assets/image/kittyangry.png" 
+       alt="sticker"
+       class="absolute bottom-0 right-0  w-28 sm:w-28 md:w-28 translate-x-3 translate-y-3 rotate-6" />
+
+  <h3 class="text-lg font-semibold text-brown mb-3">✦ I don't like</h3>
+  <ul class="text-gray-700 space-y-2 list-disc list-inside">
+    <li>Drama or fanwars</li>
+    <li>Being wrongly accused</li>
+    <li>Rude people</li>
+    <li>Betrayal</li>
+  </ul>
+</div>
+
+    </div>
+
+    <!-- DNI List -->
+<div class="relative bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition max-w-md mx-auto">
+  <!-- ✨ Sticker -->
+  <img src="assets/image/kittymad.png" 
+       alt="sticker"
+       class="absolute bottom-0 left-6  w-28 sm:w-28 md:w-28 -translate-x-4 translate-y-4 -rotate-6" />
+
+  <h3 class="text-lg font-semibold text-brown mb-3">🚫 DNI (Do Not Interact)</h3>
+  <ul class="text-gray-700 space-y-2 list-disc list-inside">
+    <li>Racist</li>
+    <li>Hate MC</li>
+    <li>MINORS</li>
+    <li>Ragebaiter</li>
+  </ul>
+</div>
+
+  </div>
+</section>
+
+
+
+<!-- Project 1 -->
+<section id="final-year-project" class="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-20">
+  <h2 class="text-4xl md:text-4xl boogaloo-regular font-bold text-white mb-10 text-center">Qr Templates</h2>
+
+  <!-- Carousel -->
+  <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl shadow-xl">
+    <div class="carousel-images flex transition-transform duration-500" data-index="0">
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/qr_desktop.png" alt="Final Year Project" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/qr_ipad.png" alt="Dashboard" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/qr_phone.png" alt="POS System" class="w-full rounded-2xl">
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button onclick="prevSlide(this)" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">‹</button>
+    <button onclick="nextSlide(this)" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">›</button>
+  </div>
+
+  <!-- Description -->
+  <p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+    My Final Year Project, <span class="text-beige font-semibold">Projek Sedekah Jariah</span>, is an IoT-enabled aid management system 
+    designed to streamline charity event operations. It integrates RFID for faster registration, 
+    a POS system for real-time inventory and finance tracking, and a dashboard for efficient aid distribution.
+  </p>
+
+  <!-- Button -->
+  <a href="https://www.canva.com/design/DAGrCduy--0/f1ePK-e2X3Dy3CGJU-_yOw/view?utm_content=DAGrCduy--0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hfadad728dd"
+     target="_blank"
+     class="mt-8 px-6 py-3 bg-beige text-black rounded-lg shadow-md hover:bg-[#bb987c] transition font-medium">
+    Qr Templates Page Link
+  </a>
+</section>
+
+
+<!-- Project 2 -->
+<section id="izzy-pin" class="min-h-screen flex flex-col items-center justify-center bg-beige px-6 py-20">
+  <h2 class="text-3xl md:text-4xl font-bold text-brown mb-10 text-center">Project #2</h2>
+
+  <!-- Carousel -->
+  <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl shadow-xl">
+    <div class="carousel-images flex transition-transform duration-500" data-index="0">
+      <div class="w-full flex-shrink-0 bg-white">
+        <img src="assets/image/rt1.png" alt="User Countdown Page" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0 bg-white">
+        <img src="assets/image/rt2.png" alt="Admin Event Page" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0 bg-white">
+        <img src="assets/image/rt4.png" alt="Event Listing Page" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0 bg-white">
+        <img src="assets/image/rt5.png" alt="Inventory Page" class="w-full rounded-2xl">
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button onclick="prevSlide(this)" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">‹</button>
+    <button onclick="nextSlide(this)" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">›</button>
+  </div>
+
+  <!-- Description -->
+  <p class="text-brown text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+    A Laravel-based enhancement for an existing real-time e-commerce system, <span class="font-semibold text-black">Hijabistahub</span>.  
+    This project introduces real-time features including a live countdown for users, an event management dashboard for admins,  
+    and low-stock notifications to improve user experience and administrative control.
+  </p>
+
+  <!-- Button -->
+  <a href="https://drive.google.com/file/d/17mnpTcYjqWhKGVOzF0XU2t8iFn0LdFjF/view?usp=sharing"
+     target="_blank"
+     class="mt-8 px-6 py-3 bg-brown text-white rounded-lg shadow-md hover:bg-[#5a3e2b] transition font-medium">
+    Watch Video Demo
+  </a>
+</section>
+
+
+
+  <!-- Footer -->
+  <footer>
+  <div class="copyright-text" aria-label="Copyright information">
+    &copy; 2025 All rights reserved
+  </div>
+  <div class="username" aria-label="Username">
+    mephistomum
+  </div>
+  </footer>
+
+  <!-- JS to handle mobile image switching -->
+<script>
+  const mobileImg = document.getElementById('switchingImage');
+  const images = [
+    'assets/image/izzy.png',
+    'assets/image/left-izzy.png'
+  ];
+  let index = 0;
+
+  setInterval(() => {
+    mobileImg.classList.add('fade-out'); // start fading out
+
+    setTimeout(() => {
+      index = (index + 1) % images.length;
+      mobileImg.src = images[index];
+      mobileImg.classList.remove('fade-out'); // fade back in
+    }, 2000); // wait until fade-out completes before switching
+  }, 7000); // full cycle: 7s (2s fade + 5s display)
+</script>
+
+<script>
+function nextSlide(button) {
+  const carousel = button.closest("section").querySelector(".carousel-images");
+  const index = parseInt(carousel.getAttribute("data-index"));
+  const total = carousel.children.length;
+  const newIndex = (index + 1) % total;
+  carousel.style.transform = `translateX(-${newIndex * 100}%)`;
+  carousel.setAttribute("data-index", newIndex);
+}
+
+function prevSlide(button) {
+  const carousel = button.closest("section").querySelector(".carousel-images");
+  const index = parseInt(carousel.getAttribute("data-index"));
+  const total = carousel.children.length;
+  const newIndex = (index - 1 + total) % total;
+  carousel.style.transform = `translateX(-${newIndex * 100}%)`;
+  carousel.setAttribute("data-index", newIndex);
+}
+</script>
+
+<script>
+(() => {
+  const DROPDOWN_CLOSE_DELAY = 150; // ms
+
+  document.querySelectorAll('[data-dropdown]').forEach(drop => {
+    const btn = drop.querySelector('button');
+    const menu = drop.querySelector('.dropdown-menu');
+    let closeTimer = null;
+
+    const show = () => {
+      btn.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+      menu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+      menu.classList.add('opacity-100', 'scale-100');
+      clearTimeout(closeTimer);
+    };
+
+    const hide = () => {
+      btn.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+      menu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+      menu.classList.remove('opacity-100', 'scale-100');
+      clearTimeout(closeTimer);
+    };
+
+    // Hover (desktop) — keep it open if mouse moves between button and menu
+    drop.addEventListener('mouseenter', () => {
+      clearTimeout(closeTimer);
+      show();
+    });
+    drop.addEventListener('mouseleave', () => {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(hide, DROPDOWN_CLOSE_DELAY);
+    });
+
+    // Focus (keyboard) — keep open while focused inside
+    drop.addEventListener('focusin', () => {
+      clearTimeout(closeTimer);
+      show();
+    });
+    drop.addEventListener('focusout', (e) => {
+      // if focus left the entire dropdown, start close timer
+      if (!drop.contains(e.relatedTarget)) {
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(hide, DROPDOWN_CLOSE_DELAY);
+      }
+    });
+
+    // Click to toggle (works for mobile and mouse)
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      // toggle
+      const isOpen = menu.classList.contains('opacity-100');
+      if (isOpen) hide();
+      else {
+        show();
+        // put focus on first menu item for accessibility
+        const first = menu.querySelector('a');
+        if (first) first.focus();
+      }
+    });
+
+    // Close on Escape
+    drop.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape') {
+        hide();
+        btn.focus();
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (ev) => {
+      if (!drop.contains(ev.target)) hide();
+    });
+  });
+})();
+</script>
+
+
+
+
+<script>
+  // Toggle main mobile menu
+  const mobileBtn = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  mobileBtn.addEventListener("click", () => {
+    const expanded = mobileBtn.getAttribute("aria-expanded") === "true";
+    mobileBtn.setAttribute("aria-expanded", String(!expanded));
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Toggle mobile Projects submenu
+  const mobileProjectsBtn = document.getElementById("mobile-projects-button");
+  const mobileProjectsMenu = document.getElementById("mobile-projects-menu");
+  const mobileProjectsIcon = document.getElementById("mobile-projects-icon");
+  mobileProjectsBtn.addEventListener("click", () => {
+    mobileProjectsMenu.classList.toggle("hidden");
+    mobileProjectsIcon.classList.toggle("rotate-180");
+  });
+</script>
+<script>
+  function openModal() {
+    document.getElementById('photoModal').classList.remove('hidden');
+  }
+  function closeModal() {
+    document.getElementById('photoModal').classList.add('hidden');
+  }
+</script>
+</body>
+</html>
+
