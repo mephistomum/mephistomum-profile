@@ -65,6 +65,42 @@
           type="button"
           class="inline-flex items-center gap-2 hover:text-nav focus:outline-none"
           aria-haspopup="true">
+          <span>Pages</span>
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 8l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <!-- Dropdown menu (desktop) - vertical list -->
+      <div
+  class="dropdown-menu absolute left-0 top-full w-56 bg-brown text-beige rounded-lg shadow-lg 
+         transform transition-all duration-150 opacity-0 scale-95 pointer-events-none 
+         group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto 
+         hover:opacity-100 hover:scale-100 hover:pointer-events-auto z-50 flex flex-col">
+
+          <a href="#izzy-qr"
+             class="block w-full text-left px-4 py-2 text-sm hover:bg-[#bb987c] hover:text-black">
+            QR Templates
+          </a>
+          <a href="#izzy-pin"
+             class="block w-full text-left px-4 py-2 text-sm hover:bg-[#bb987c] hover:text-black">
+            Izzy's Pin
+          </a>
+                              <a href="#izzy-landscape"
+             class="block w-full text-left px-4 py-2 text-sm hover:bg-[#bb987c] hover:text-black">
+            Landscape Shots
+          </a>
+        </div>
+      </div>
+
+
+
+      <!-- Projects dropdown (desktop) -->
+      <div class="relative group">
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 hover:text-nav focus:outline-none"
+          aria-haspopup="true">
           <span>Projects</span>
           <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M6 8l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -78,16 +114,19 @@
          group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto 
          hover:opacity-100 hover:scale-100 hover:pointer-events-auto z-50 flex flex-col">
 
-          <a href="#final-year-project"
+          <a href="#izzy-yearbook"
              class="block w-full text-left px-4 py-2 text-sm hover:bg-[#bb987c] hover:text-black">
-            QR Templates
+            Yearbook Project
           </a>
-          <a href="#izzy-pin"
+                    <a href="#izzy-photocard"
              class="block w-full text-left px-4 py-2 text-sm hover:bg-[#bb987c] hover:text-black">
-            Izzy's Pin
+            Photocard Project
           </a>
         </div>
       </div>
+
+
+
       <a href="https://ko-fi.com/mephistomum" class="hover:text-nav">Buy Me Coffee</a>
     </div>
 
@@ -123,6 +162,23 @@
       <a href="#home" class="block w-full text-left px-3 py-2 hover:bg-[#7a5c3f] rounded">Home</a>
       <a href="#about" class="block w-full text-left px-3 py-2 hover:bg-[#7a5c3f] rounded">About</a>
 
+      <!-- Pages collapsible (mobile) -->
+      <div class="mt-1">
+        <button id="mobile-pages-button" class="w-full flex items-center justify-between px-3 py-2 hover:bg-[#7a5c3f] rounded focus:outline-none">
+          <span class="text-left">Pages</span>
+          <svg id="mobile-pages-icon" class="w-4 h-4 transform transition-transform duration-200" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 8l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Pages list (stacked vertically) -->
+        <div id="mobile-pages-menu" class="hidden flex-col mt-2 ml-3 space-y-1">
+          <a href="#izzy-qr" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">QR Templates</a>
+          <a href="#izzy-pin" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Izzy's Pins</a>
+          <a href="#izzy-landscape" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Landscape Shots</a>
+        </div>
+      </div>
+
       <!-- Projects collapsible (mobile) -->
       <div class="mt-1">
         <button id="mobile-projects-button" class="w-full flex items-center justify-between px-3 py-2 hover:bg-[#7a5c3f] rounded focus:outline-none">
@@ -134,8 +190,8 @@
 
         <!-- Mobile Projects list (stacked vertically) -->
         <div id="mobile-projects-menu" class="hidden flex-col mt-2 ml-3 space-y-1">
-          <a href="#final-year-project" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Final Year Project</a>
-          <a href="#izzy-pin" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Laravel Project</a>
+          <a href="#izzy-yearbook" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Yearbook Project</a>
+          <a href="#izzy-photocard" class="block w-full text-left px-3 py-2 hover:bg-[#6d4c36] rounded">Photocard Project</a>
         </div>
       </div>
     </div>
@@ -168,7 +224,7 @@
     </p>
     
     <p class="uppercase text-xs tracking-widest text-gray-300 max-w-md mx-auto lg:mx-0 leading-relaxed">
-      Hi, I’m Izzy - 23 years old love and deepspace hunter and a programmer irl. 
+      Hi, I’m Izzy (23) - love and deepspace hunter and a programmer irl. 
       This site keeps all my highlight X contents including QRs, edits and moots projects.  
       Please go to "about me" section before interacting.
     </p>
@@ -273,20 +329,20 @@
 
 
 <!-- Project 1 -->
-<section id="final-year-project" class="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-20">
+<section id="izzy-qr" class="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-20">
   <h2 class="text-4xl md:text-4xl boogaloo-regular font-bold text-white mb-10 text-center">Qr Templates</h2>
 
   <!-- Carousel -->
   <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl shadow-xl">
     <div class="carousel-images flex transition-transform duration-500" data-index="0">
       <div class="w-full flex-shrink-0">
-        <img src="assets/image/qr_desktop.png" alt="Final Year Project" class="w-full rounded-2xl">
+        <img src="assets/image/qr_desktop.png" alt="qr desktop view" class="w-full rounded-2xl">
       </div>
       <div class="w-full flex-shrink-0">
-        <img src="assets/image/qr_ipad.png" alt="Dashboard" class="w-full rounded-2xl">
+        <img src="assets/image/qr_ipad.png" alt="qr ipad view" class="w-full rounded-2xl">
       </div>
       <div class="w-full flex-shrink-0">
-        <img src="assets/image/qr_phone.png" alt="POS System" class="w-full rounded-2xl">
+        <img src="assets/image/qr_phone.png" alt="qr phone view" class="w-full rounded-2xl">
       </div>
     </div>
 
@@ -295,15 +351,26 @@
     <button onclick="nextSlide(this)" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">›</button>
   </div>
 
-  <!-- Description -->
-  <p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
-    My Final Year Project, <span class="text-beige font-semibold">Projek Sedekah Jariah</span>, is an IoT-enabled aid management system 
-    designed to streamline charity event operations. It integrates RFID for faster registration, 
-    a POS system for real-time inventory and finance tracking, and a dashboard for efficient aid distribution.
-  </p>
+<!-- Description -->
+<p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  This page created to store all my <span class="text-beige font-semibold">QR templates</span>, 
+  the features as below:
+</p>
+
+<!-- Bullet List -->
+<ul class="text-gray-300 text-left max-w-md mx-auto mt-4 list-disc list-inside space-y-2 text-sm md:text-base">
+  <li>Download QR</li>
+  <li>Filter by LIs through navigation bar</li>
+  <li>Filter by category (e.g. summer, spring, cute)</li>
+  <li>Shuffle Random QRs (can filter by LI)</li>
+</ul>
+
+<p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  Please read the rules in that page.
+</p>
 
   <!-- Button -->
-  <a href="https://www.canva.com/design/DAGrCduy--0/f1ePK-e2X3Dy3CGJU-_yOw/view?utm_content=DAGrCduy--0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hfadad728dd"
+  <a href="https://mephistomum.github.io/mephistomum-gallery/"
      target="_blank"
      class="mt-8 px-6 py-3 bg-beige text-black rounded-lg shadow-md hover:bg-[#bb987c] transition font-medium">
     Qr Templates Page Link
@@ -313,22 +380,19 @@
 
 <!-- Project 2 -->
 <section id="izzy-pin" class="min-h-screen flex flex-col items-center justify-center bg-beige px-6 py-20">
-  <h2 class="text-3xl md:text-4xl font-bold text-brown mb-10 text-center">Project #2</h2>
+  <h2 class="text-4xl md:text-4xl boogaloo-regular font-bold text-brown mb-10 text-center">Izzy's Pins</h2>
 
   <!-- Carousel -->
-  <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl shadow-xl">
+  <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl ">
     <div class="carousel-images flex transition-transform duration-500" data-index="0">
-      <div class="w-full flex-shrink-0 bg-white">
-        <img src="assets/image/rt1.png" alt="User Countdown Page" class="w-full rounded-2xl">
+      <div class="w-full flex-shrink-0 ">
+        <img src="assets/image/pin_desktop.png" alt="pin desktop view" class="w-full rounded-2xl">
       </div>
-      <div class="w-full flex-shrink-0 bg-white">
-        <img src="assets/image/rt2.png" alt="Admin Event Page" class="w-full rounded-2xl">
+      <div class="w-full flex-shrink-0 ">
+        <img src="assets/image/pin_ipad.png" alt="pin ipad view" class="w-full rounded-2xl">
       </div>
-      <div class="w-full flex-shrink-0 bg-white">
-        <img src="assets/image/rt4.png" alt="Event Listing Page" class="w-full rounded-2xl">
-      </div>
-      <div class="w-full flex-shrink-0 bg-white">
-        <img src="assets/image/rt5.png" alt="Inventory Page" class="w-full rounded-2xl">
+      <div class="w-full flex-shrink-0 ">
+        <img src="assets/image/pin_phone.png" alt="pin phone view" class="w-full rounded-2xl">
       </div>
     </div>
 
@@ -338,21 +402,177 @@
   </div>
 
   <!-- Description -->
-  <p class="text-brown text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
-    A Laravel-based enhancement for an existing real-time e-commerce system, <span class="font-semibold text-black">Hijabistahub</span>.  
-    This project introduces real-time features including a live countdown for users, an event management dashboard for admins,  
-    and low-stock notifications to improve user experience and administrative control.
-  </p>
+<p class="text-brown text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  This is pinterest-like page to store all <span class="text-black font-semibold"> my edits and edits from moots projects</span>, 
+  the features as below:
+</p>
+
+<!-- Bullet List -->
+<ul class="text-brown text-left max-w-md mx-auto mt-4 list-disc list-inside space-y-2 text-sm md:text-base">
+  <li>Enlarge the view of the photo</li>
+  <li>Go to the post link for certain images</li>
+</ul>
+
+<p class="text-brown text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  This basically is my personal page but you can scroll around if you are bored and don't know what to do.
+</p>
 
   <!-- Button -->
-  <a href="https://drive.google.com/file/d/17mnpTcYjqWhKGVOzF0XU2t8iFn0LdFjF/view?usp=sharing"
+  <a href="https://mephistomum.github.io/mephistomum-project/"
      target="_blank"
      class="mt-8 px-6 py-3 bg-brown text-white rounded-lg shadow-md hover:bg-[#5a3e2b] transition font-medium">
-    Watch Video Demo
+    Izzy's Pins Link
   </a>
 </section>
 
+<!-- Project 3 -->
+<section id="izzy-landscape" class="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-20">
+  <h2 class="text-4xl md:text-4xl boogaloo-regular font-bold text-white mb-10 text-center">Landscape Shots</h2>
 
+  <!-- Carousel -->
+  <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl shadow-xl">
+    <div class="carousel-images flex transition-transform duration-500" data-index="0">
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/landscape_desktop.png" alt="landscape desktop view" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/landscape_ipad.png" alt="landscape ipad view" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/landscape_phone.png" alt="landscape phone view" class="w-full rounded-2xl">
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button onclick="prevSlide(this)" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">‹</button>
+    <button onclick="nextSlide(this)" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">›</button>
+  </div>
+
+<!-- Description -->
+<p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  This page created to store all <span class="text-beige font-semibold">landscape shots</span> 
+  from 5* cards kindled that i have, 
+  the features as below:
+</p>
+
+<!-- Bullet List -->
+<ul class="text-gray-300 text-left max-w-md mx-auto mt-4 list-disc list-inside space-y-2 text-sm md:text-base">
+  <li>Filter the category by LIs</li>
+  <li>Enlarge photos for viewing </li>
+  <li>Scroll while enlarge the photos</li>
+  <li>Download photo by holding the photo</li>
+</ul>
+
+<p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  I only provide the raw screenshot, feel free to edit it as u want.
+</p>
+
+  <!-- Button -->
+  <a href="https://mephistomum.github.io/Landscape-LADS/"
+     target="_blank"
+     class="mt-8 px-6 py-3 bg-beige text-black rounded-lg shadow-md hover:bg-[#bb987c] transition font-medium">
+    Landscape Shots Page Link
+  </a>
+</section>
+
+<!-- Project 4 -->
+<section id="izzy-yearbook" class="min-h-screen flex flex-col items-center justify-center bg-beige px-6 py-20">
+  <h2 class="text-4xl md:text-4xl boogaloo-regular font-bold text-brown mb-10 text-center">Yearbook Project</h2>
+
+  <!-- Carousel -->
+  <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl ">
+    <div class="carousel-images flex transition-transform duration-500" data-index="0">
+      <div class="w-full flex-shrink-0 ">
+        <img src="assets/image/yb_desktop.png" alt="yb desktop view" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0 ">
+        <img src="assets/image/yb_ipad.png" alt="yb ipad view" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0 ">
+        <img src="assets/image/yb_phone.png" alt="yb phone view" class="w-full rounded-2xl">
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button onclick="prevSlide(this)" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">‹</button>
+    <button onclick="nextSlide(this)" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">›</button>
+  </div>
+
+  <!-- Description -->
+<p class="text-brown text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  This is just a standard<span class="text-black font-semibold"> digital yearbook</span>, 
+  the features as below:
+</p>
+
+<!-- Bullet List -->
+<ul class="text-brown text-left max-w-md mx-auto mt-4 list-disc list-inside space-y-2 text-sm md:text-base">
+  <li>zoom in/ou the book</li>
+  <li>real paper flip visualization</li>
+</ul>
+
+<p class="text-brown text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  Just a fun project with gorgeous moots, will do it again with other theme later. For phone user,
+  the layout is still not right, i'll fix it later.
+</p>
+
+
+  <!-- Button -->
+  <a href="https://mephistomum.github.io/linkon-yearbook/"
+     target="_blank"
+     class="mt-8 px-6 py-3 bg-brown text-white rounded-lg shadow-md hover:bg-[#5a3e2b] transition font-medium">
+    Yearbook Project Link
+  </a>
+</section>
+
+<!-- Project 5 -->
+<section id="izzy-photocard" class="min-h-screen flex flex-col items-center justify-center bg-black px-6 py-20">
+  <h2 class="text-4xl md:text-4xl boogaloo-regular font-bold text-white mb-10 text-center">Photocard Project</h2>
+
+  <!-- Carousel -->
+  <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl shadow-xl">
+    <div class="carousel-images flex transition-transform duration-500" data-index="0">
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/pc_desktop.png" alt="pc desktop view" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/pc_ipad.png" alt="pc ipad view" class="w-full rounded-2xl">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="assets/image/pc_phone.png" alt="pc phone view" class="w-full rounded-2xl">
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button onclick="prevSlide(this)" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">‹</button>
+    <button onclick="nextSlide(this)" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white px-3 py-1 rounded-full hover:bg-black/70">›</button>
+  </div>
+
+<!-- Description -->
+<p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+  A <span class="text-beige font-semibold">Photocard flip</span> 
+  page featuring moots MCs wearing Jimmy Choo dress.
+  The features as below:
+</p>
+
+<!-- Bullet List -->
+<ul class="text-gray-300 text-left max-w-md mx-auto mt-4 list-disc list-inside space-y-2 text-sm md:text-base">
+  <li>Play/pause the bgm</li>
+  <li>flip all to font/back button</li>
+  <li>flip photo individually</li>
+  <li>Download photo by holding the photo</li>
+</ul>
+
+<p class="text-gray-300 text-center max-w-2xl mt-8 leading-relaxed text-sm md:text-base">
+ A fun project with mootsies hehew
+</p>
+
+  <!-- Button -->
+  <a href="https://mephistomum.github.io/Photocard-LADS/"
+     target="_blank"
+     class="mt-8 px-6 py-3 bg-beige text-black rounded-lg shadow-md hover:bg-[#bb987c] transition font-medium">
+    Photocard Project Link
+  </a>
+</section>
 
   <!-- Footer -->
   <footer>
@@ -486,7 +706,7 @@ function prevSlide(button) {
 
 
 <script>
-  // Toggle main mobile menu
+  // ✅ Toggle main mobile menu
   const mobileBtn = document.getElementById("mobile-menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
   mobileBtn.addEventListener("click", () => {
@@ -495,7 +715,7 @@ function prevSlide(button) {
     mobileMenu.classList.toggle("hidden");
   });
 
-  // Toggle mobile Projects submenu
+  // ✅ Toggle "Projects" submenu
   const mobileProjectsBtn = document.getElementById("mobile-projects-button");
   const mobileProjectsMenu = document.getElementById("mobile-projects-menu");
   const mobileProjectsIcon = document.getElementById("mobile-projects-icon");
@@ -503,7 +723,17 @@ function prevSlide(button) {
     mobileProjectsMenu.classList.toggle("hidden");
     mobileProjectsIcon.classList.toggle("rotate-180");
   });
+
+  // ✅ Toggle "Pages" submenu
+  const mobilePagesBtn = document.getElementById("mobile-pages-button");
+  const mobilePagesMenu = document.getElementById("mobile-pages-menu");
+  const mobilePagesIcon = document.getElementById("mobile-pages-icon");
+  mobilePagesBtn.addEventListener("click", () => {
+    mobilePagesMenu.classList.toggle("hidden");
+    mobilePagesIcon.classList.toggle("rotate-180");
+  });
 </script>
+
 <script>
   function openModal() {
     document.getElementById('photoModal').classList.remove('hidden');
