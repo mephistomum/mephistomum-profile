@@ -62,6 +62,15 @@
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
+  /* Custom scrollbar styling for dark modal */
+  #secretModal pre::-webkit-scrollbar {
+    display: none;
+  }
+  #secretModal pre {
+    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+
   </style>
 </head>
 <body>
@@ -251,6 +260,26 @@
       This site keeps all my highlight X contents including QRs, edits and moots projects.  
       Please go to "about me" section before interacting.
     </p>
+
+
+    <!-- Secret Section -->
+    <div class="text-center mt-10 text-white">
+      <button id="showPasswordBtn"
+              class="bg-beige hover:bg-nav text-white px-4 py-2 rounded-md">
+        🔒 Izzy's Secret
+      </button>
+
+      <div id="passwordSection" class="hidden mt-4">
+        <input type="password" id="passwordInput"
+              placeholder="Enter password"
+              class="px-4 py-2 text-black rounded-md mb-3" />
+        <br>
+        <button id="openButton"
+                class="bg-beige hover:bg-nav text-white px-4 py-2 rounded-md">
+          Open Secret
+        </button>
+      </div>
+    </div>
   </section>
 
   <!-- ✨ IMAGE SWITCHER (Visible on mobile + iPad) -->
@@ -273,7 +302,22 @@
        class="hidden lg:block lg:absolute lg:bottom-0 lg:right-0 lg:h-screen object-contain drop-shadow-2xl transition-all duration-700 ease-in-out opacity-0 animate-fadeIn" />
 
 </main>
-
+<!-- Modal -->
+<!-- Modal -->
+<div id="secretModal" 
+     class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+  <div class="bg-brown text-beige rounded-2xl shadow-lg p-6 
+              w-11/12 sm:w-96 md:w-[30rem] lg:w-[36rem] 
+              max-h-[80vh] overflow-y-auto border border-beige 
+              transform scale-95 transition-transform duration-300 ease-out">
+    <h2 class="text-2xl mb-4 text-center text-white">💌 Izzy’s Secret</h2>
+    <pre id="secretContent" class="whitespace-pre-wrap text-base leading-relaxed"></pre>
+    <button id="closeModal" 
+            class="mt-6 bg-beige hover:bg-nav text-white px-4 py-2 rounded-md w-full">
+      Close
+    </button>
+  </div>
+</div>
 
 <!-- About Section -->
 <section id="about" class="min-h-screen flex items-center justify-center bg-beige px-6 py-20">
@@ -647,6 +691,8 @@ function prevSlide(button) {
 }
 </script>
 
+
+
 <script>
 (() => {
   const DROPDOWN_CLOSE_DELAY = 150; // ms
@@ -757,6 +803,8 @@ function prevSlide(button) {
   });
 </script>
 
+
+
 <script>
   function openModal() {
     document.getElementById('photoModal').classList.remove('hidden');
@@ -765,6 +813,8 @@ function prevSlide(button) {
     document.getElementById('photoModal').classList.add('hidden');
   }
 </script>
+
+
 <script>
   document.addEventListener("click", () => {
     const bgm = document.getElementById("bgm");
@@ -773,6 +823,8 @@ function prevSlide(button) {
     }
   }, { once: true });
 </script>
+
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -836,6 +888,76 @@ document.addEventListener("DOMContentLoaded", function() {
     if (e.key === "Escape") closeAll();
   });
 });
+</script>
+
+
+<script>
+  const correctPassword = "1097295";
+  const secretFilePath = "assets/GA.txt";
+
+  const showPasswordBtn = document.getElementById("showPasswordBtn");
+  const passwordSection = document.getElementById("passwordSection");
+  const openButton = document.getElementById("openButton");
+  const passwordInput = document.getElementById("passwordInput");
+  const secretModalBox = document.getElementById("secretModal");
+  const secretContentBox = document.getElementById("secretContent");
+  const closeSecretBtn = document.getElementById("closeModal");
+
+  // Step 1: Show password field
+  showPasswordBtn.addEventListener("click", () => {
+    passwordSection.classList.toggle("hidden");
+  });
+
+  // Step 2: Verify password and load secret
+  openButton.addEventListener("click", async () => {
+    const enteredPassword = passwordInput.value.trim();
+
+    if (enteredPassword === correctPassword) {
+      try {
+        const response = await fetch(secretFilePath);
+        const text = await response.text();
+        secretContentBox.textContent = text;
+        secretModalBox.classList.remove("hidden");
+        passwordInput.value = "";
+      } catch (error) {
+        alert("❌ Failed to load secret file.");
+      }
+    } else {
+      alert("Wrong password! Try again.");
+      passwordInput.value = "";
+    }
+  });
+
+  // Step 3: Close modal
+  closeSecretBtn.addEventListener("click", () => {
+    secretModalBox.classList.add("hidden");
+  });
+
+  // Optional: close when clicking outside the modal box
+  secretModalBox.addEventListener("click", (e) => {
+    if (e.target === secretModalBox) {
+      secretModalBox.classList.add("hidden");
+    }
+  });
+
+
+    const modal = document.getElementById("secretModal");
+  const modalBox = modal.querySelector("div");
+
+  // Smooth open/close effect
+  function openModal() {
+    modal.classList.remove("hidden");
+    setTimeout(() => modalBox.classList.remove("scale-95"), 10);
+  }
+  function closeModal() {
+    modalBox.classList.add("scale-95");
+    setTimeout(() => modal.classList.add("hidden"), 300);
+  }
+
+  document.getElementById("closeModal").addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
 </script>
 
 </body>

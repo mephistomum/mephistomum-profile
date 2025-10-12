@@ -1,0 +1,70 @@
+HOW TO FIND GA WINNER
+(paste the code in console)
+
+let users = new Set();
+let lastHeight = 0;
+
+async function collectUsernamesWithImages() {
+  console.log("⏳ Collecting usernames who commented with an image, including probable spam…");
+
+  while (true) {
+    // Click all expandable buttons including spam section
+    document.querySelectorAll('div[role="button"]').forEach(btn => {
+      const text = btn.innerText.trim();
+      if (
+        text.match(/Show more replies|Show|View|Show probable spam/i)
+      ) {
+        btn.click();
+      }
+    });
+
+    // Find all tweet/comment elements
+    const tweets = document.querySelectorAll('article[role="article"]');
+
+    tweets.forEach(tweet => {
+      // Check if the tweet/comment contains any media
+      const hasMedia =
+        tweet.querySelector('img[src*="twimg.com/media"]') || // photo
+        tweet.querySelector('video') || // gif/video
+        tweet.querySelector('div[data-testid="videoPlayer"]');
+
+      if (hasMedia) {
+        const userLink = tweet.querySelector('a[href^="/"][role="link"]');
+        if (userLink) {
+          const username = userLink.getAttribute("href").split("/")[1];
+          if (
+            username &&
+            !username.includes("status") &&
+            !username.includes("photo") &&
+            !["home", "explore", "notifications", "messages", "compose", "i"].includes(username)
+          ) {
+            users.add(username);
+          }
+        }
+      }
+    });
+
+    // Scroll down and wait
+    const newHeight = document.body.scrollHeight;
+    if (newHeight === lastHeight) break;
+    lastHeight = newHeight;
+    window.scrollTo(0, newHeight);
+    await new Promise(r => setTimeout(r, 3000));
+  }
+
+  console.log(`✅ Found ${users.size} users who commented with an image (including probable spam).`);
+  console.log([...users]);
+
+  // Download usernames as .txt
+  const blob = new Blob([Array.from(users).join("\n")], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "usernames_with_images_including_spam.txt";
+  a.click();
+  URL.revokeObjectURL(url);
+
+  console.log("📁 usernames_with_images_including_spam.txt downloaded successfully!");
+}
+
+collectUsernamesWithImages();
