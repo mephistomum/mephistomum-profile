@@ -41,6 +41,27 @@
     opacity: 0;
   }
 
+/* On touch devices (no hover), prevent the CSS hover from opening the menu
+   and let JS control visibility instead. */
+@media (hover: none) {
+  .group .dropdown-menu {
+    opacity: 0 !important;
+    transform: scale(.95) !important;
+    pointer-events: none !important;
+  }
+
+  .group .dropdown-menu.open {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* JS-controlled open style for all devices (helps with desktop when JS toggles it) */
+.dropdown-menu {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
   </style>
 </head>
 <body>
@@ -751,6 +772,71 @@ function prevSlide(button) {
     }
   }, { once: true });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const dropdowns = Array.from(document.querySelectorAll("nav .group"));
+
+  // If no dropdowns found, nothing to do
+  if (!dropdowns.length) return;
+
+  // Helper: close all dropdowns
+  function closeAll() {
+    dropdowns.forEach(d => {
+      const menu = d.querySelector(".dropdown-menu");
+      const btn = d.querySelector("button");
+      if (menu) menu.classList.remove("open");
+      if (btn) btn.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  // Click on the dropdown button toggles the menu
+  dropdowns.forEach(dropdown => {
+    const button = dropdown.querySelector("button");
+    const menu = dropdown.querySelector(".dropdown-menu");
+
+    if (!button || !menu) return;
+
+    // Ensure accessible state
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", menu.id || "");
+
+    button.addEventListener("click", function(e) {
+      // IMPORTANT: stop propagation so the document click handler doesn't close it immediately
+      e.stopPropagation();
+      e.preventDefault();
+
+      // If this menu is open, close it; otherwise open this and close others
+      const isOpen = menu.classList.contains("open");
+      closeAll();
+      if (!isOpen) {
+        menu.classList.add("open");
+        button.setAttribute("aria-expanded", "true");
+      } else {
+        menu.classList.remove("open");
+        button.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Prevent clicks inside the menu from bubbling to document (so clicking a link won't immediately
+    // trigger the "outside click" logic until normal navigation happens).
+    menu.addEventListener("click", function(e) {
+      e.stopPropagation();
+    });
+  });
+
+  // Close when clicking outside any dropdown
+  document.addEventListener("click", function() {
+    closeAll();
+  });
+
+  // Optional: close on ESC
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeAll();
+  });
+});
+</script>
+
 </body>
 </html>
 
